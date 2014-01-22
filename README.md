@@ -103,12 +103,12 @@ Providers are declared with a name that begins lowercase and ends with "Provider
     });
 ```   
 
-# Directives!
+## Directives
 
 
-Directives have been seperated up into different types of directives, as is most common in the majority of Angular projects.
+Directives have been separated up into different types of directives, as is most common in the majority of Angular projects.
 
-## Names are mapped as follows:
+### Name Mappings:
 
 - `"<some-name>"` : element directive named `"someName"`
 - `"[my-attribute]"`: attribute directive named `"myAttribute"`
@@ -141,8 +141,26 @@ All directive types can be wired up in the same manner, just substitute `'<tag-n
     });
 ```   
     
+## Multi-declaration
+
+An object literal can be used to declare multiple components in one statement:
+
+```javascript
+    ng('myApp', {
+        'MainCtrl': function($scope, foo) {
+            $scope.name = foo.bar;
+        },
+        'foo': {
+            bar: 'Test sample'
+        }
+    });
+```
+        
+
+
 # More to come
 
+- **UNIT TESTS!!!** (bad developer! bad! bad!)
 - Filters.
 - Non-standard directives.
 - Multiple restriction directives.
