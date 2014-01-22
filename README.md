@@ -3,7 +3,7 @@ angular-shorthand.js
 
 Shorthand wrapper for AngularJS
 
-[Example](http://plnkr.co/edit/qv2QpsN2lveKUQYxldcX?p=preview)
+[Example on Plunker](http://plnkr.co/edit/7hQ2pcOm7j7E4GngkGfK?p=preview)
 
 This library is a "plugin" of sorts for Angular that allows for more fluid declaration of angular components such as modules, services, directives, providers, controllers, etc.
 
