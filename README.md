@@ -16,20 +16,24 @@ The goal of this library is to help developers:
 
 ### A Quick Example
 
+```javascript
     ng('myModule', []);
     
     ng('myModule', 'MyCtrl', function($scope) {
       $scope.foo = 'bar';
     });
+```
 
 which is equivalent to:
 
+```javascript
     angular.module('myModule', []);
     
     angular.module('myModule').controller('MyController', function($scope) {
       $scope.foo = 'bar';
     });
-    
+```
+
 ### How it works
 
 In the statement `ng('moduleName', componentName, args)` does the following:
@@ -45,15 +49,17 @@ In the statement `ng('moduleName', componentName, args)` does the following:
 
 Controllers are defined as having a **capitalized first letter** and **ending in "Ctrl"**:
 
+```javascript
     ng('myApp', 'MainCtrl', function($scope) { });
     
     ng('myApp', 'MainCtrl', ['$scope', function($scope) { }]);
-    
+```
     
 ### Services
 
 Services are defined as having a lower-camelcase name that does not end in "Provider". Services that are passed an object actually become values (see below).
 
+```javascript
     ng('myApp', 'fooService', function($http) {
       return {
          foo: function (x) { }
@@ -65,32 +71,37 @@ Services are defined as having a lower-camelcase name that does not end in "Prov
          foo: function (x) { }
       };
     }]);
-    
+```
+
 ### Values
 
 Values are declared the same way as services but the last argument is *not a function or an array*:
 
+```javascript
     ng('myApp', 'someValue', 'this is a value');
    
     ng('myApp', 'someOtherValue', {
       foo: 'bar'
     });
+```
 
 ### Constants
 
 Constants are declared with ALL_CAPS names, in other words, in a constant name, only capital letters and underscores are allowed:
 
+```javascript
     ng('myApp', 'THIS_IS_PI', 3.14);
-    
+```   
 
 ### Providers
 
 Providers are declared with a name that begins lowercase and ends with "Provider":
 
+```javascript
     ng('myApp', 'somethingProvider', function () {
       this.$get = function () { };
     });
-    
+```   
 
 # Directives!
 
@@ -108,6 +119,7 @@ Directives have been seperated up into different types of directives, as is most
 
 All directive types can be wired up in the same manner, just substitute `'<tag-name>'` for `'[attr-name]'` or `'<!-- comment name -->'` below:
 
+```javascript
     ng('myApp', '<tag-name>', function(scope, elem, attrs) {
     
     });
@@ -127,7 +139,7 @@ All directive types can be wired up in the same manner, just substitute `'<tag-n
       scope: {},
       link: function(scope, elem) { }
     });
-    
+```   
     
 # More to come
 
