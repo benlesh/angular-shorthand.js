@@ -17,21 +17,21 @@ The goal of this library is to help developers:
 ### A Quick Example
 
 ```javascript
-    ng('myModule', []);
-    
-    ng('myModule', 'MyCtrl', function($scope) {
-      $scope.foo = 'bar';
-    });
+ng('myModule', []);
+
+ng('myModule', 'MyCtrl', function($scope) {
+  $scope.foo = 'bar';
+});
 ```
 
 which is equivalent to:
 
 ```javascript
-    angular.module('myModule', []);
-    
-    angular.module('myModule').controller('MyController', function($scope) {
-      $scope.foo = 'bar';
-    });
+angular.module('myModule', []);
+
+angular.module('myModule').controller('MyController', function($scope) {
+  $scope.foo = 'bar';
+});
 ```
 
 ### How it works
@@ -50,9 +50,11 @@ In the statement `ng('moduleName', componentName, args)` does the following:
 Controllers are defined as having a **capitalized first letter** and **ending in "Ctrl"**:
 
 ```javascript
-    ng('myApp', 'MainCtrl', function($scope) { });
-    
-    ng('myApp', 'MainCtrl', ['$scope', function($scope) { }]);
+ng('myApp', 'MainCtrl', function($scope) { });
+
+// OR
+
+ng('myApp', 'MainCtrl', ['$scope', function($scope) { }]);
 ```
     
 ### Services
@@ -60,17 +62,19 @@ Controllers are defined as having a **capitalized first letter** and **ending in
 Services are defined as having a lower-camelcase name that does not end in "Provider". Services that are passed an object actually become values (see below).
 
 ```javascript
-    ng('myApp', 'fooService', function($http) {
-      return {
-         foo: function (x) { }
-      };
-    });
-    
-    ng('myApp', 'fooService', ['$http', function($http) {
-      return {
-         foo: function (x) { }
-      };
-    }]);
+ng('myApp', 'fooService', function($http) {
+  return {
+     foo: function (x) { }
+  };
+});
+
+// OR
+
+ng('myApp', 'fooService', ['$http', function($http) {
+  return {
+     foo: function (x) { }
+  };
+}]);
 ```
 
 ### Values
@@ -78,11 +82,13 @@ Services are defined as having a lower-camelcase name that does not end in "Prov
 Values are declared the same way as services but the last argument is *not a function or an array*:
 
 ```javascript
-    ng('myApp', 'someValue', 'this is a value');
-   
-    ng('myApp', 'someOtherValue', {
-      foo: 'bar'
-    });
+ng('myApp', 'someValue', 'this is a value');
+
+// OR
+
+ng('myApp', 'someOtherValue', {
+  foo: 'bar'
+});
 ```
 
 ### Constants
@@ -90,7 +96,7 @@ Values are declared the same way as services but the last argument is *not a fun
 Constants are declared with ALL_CAPS names, in other words, in a constant name, only capital letters and underscores are allowed:
 
 ```javascript
-    ng('myApp', 'THIS_IS_PI', 3.14);
+ng('myApp', 'THIS_IS_PI', 3.14);
 ```   
 
 ### Providers
@@ -98,9 +104,9 @@ Constants are declared with ALL_CAPS names, in other words, in a constant name, 
 Providers are declared with a name that begins lowercase and ends with "Provider":
 
 ```javascript
-    ng('myApp', 'somethingProvider', function () {
-      this.$get = function () { };
-    });
+ng('myApp', 'somethingProvider', function () {
+  this.$get = function () { };
+});
 ```   
 
 ## Directives
@@ -120,25 +126,27 @@ Directives have been separated up into different types of directives, as is most
 All directive types can be wired up in the same manner, just substitute `'<tag-name>'` for `'[attr-name]'` or `'<!-- comment name -->'` below:
 
 ```javascript
-    ng('myApp', '<tag-name>', function(scope, elem, attrs) {
-    
-    });
-    
-    // or
-    
-    ng('myApp', '<tag-name>', [function (){
-      return function(scope, elem, attrs) {
-    
-      };
-    });
-    
-    // or
-    
-    ng('myApp', '<tag-name>', {
-      template: '',
-      scope: {},
-      link: function(scope, elem) { }
-    });
+ng('myApp', '<tag-name>', function(scope, elem, attrs) {
+    // this is the linking function
+});
+
+// OR
+
+// allowing for dependency injection
+ng('myApp', '<tag-name>', ['$log', function ($log){
+  return function(scope, elem, attrs) {
+    // linking function again
+  };
+});
+
+// OR
+
+// just pass the config object (restrict not required)
+ng('myApp', '<tag-name>', {
+  template: '',
+  scope: {},
+  link: function(scope, elem) { }
+});
 ```   
     
 ## Multi-declaration
@@ -146,14 +154,14 @@ All directive types can be wired up in the same manner, just substitute `'<tag-n
 An object literal can be used to declare multiple components in one statement:
 
 ```javascript
-    ng('myApp', {
-        'MainCtrl': function($scope, foo) {
-            $scope.name = foo.bar;
-        },
-        'foo': {
-            bar: 'Test sample'
-        }
-    });
+ng('myApp', {
+    'MainCtrl': function($scope, foo) {
+        $scope.name = foo.bar;
+    },
+    'foo': {
+        bar: 'Test sample'
+    }
+});
 ```
         
 
