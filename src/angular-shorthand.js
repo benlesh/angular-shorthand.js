@@ -18,7 +18,8 @@
       'constant': /^[A-Z][A-Z_0-9]*$/,
       'element': /^<([a-z]([a-z]|\-{0,1}[a-z])*)>$/,
       'attribute': /^\[([a-z]([a-z]|\-{0,1}[a-z])*)\]$/,
-      'comment': /^<!--\s*([a-z]([a-z]|\-{0,1}[a-z])*)\s*-->$/
+      'comment': /^<!--\s*([a-z]([a-z]|\-{0,1}[a-z])*)\s*-->$/,
+      'class': /^[A-Z][A-Za-z0-9_]*(?!Ctrl)$/
   };
   
   var declarationTypeHandlers = {
@@ -43,7 +44,16 @@
     },
     'element': directiveType('E', declarationTypeMatchers.element),
     'attribute': directiveType('A', declarationTypeMatchers.attribute),
-    'comment': directiveType('M', declarationTypeMatchers.comment)
+    'comment': directiveType('M', declarationTypeMatchers.comment),
+    'class': function(module, name, args) {
+        if(isFunction(args)) {
+            module.factory(name, function() {
+               return args;
+            });
+        } else {
+            throw new Error('invalid class declaration "' + name +'", expects class constructor function');
+        }
+    }
   };
   
   function directiveType(restriction, regex) {

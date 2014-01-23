@@ -3,14 +3,8 @@ describe('module creation', function () {
     var mockModule;
 
     beforeEach(function () {
-        mockModule = {
-            factory: jasmine.createSpy('module.factory'),
-            provider: jasmine.createSpy('module.provider'),
-            value: jasmine.createSpy('module.value'),
-            constant: jasmine.createSpy('module.constant'),
-            directive: jasmine.createSpy('module.directive'),
-            filter: jasmine.createSpy('module.filter')
-        };
+        mockModule = jasmine.createSpyObj('module', ['controller', 'service', 'factory', 'provider',
+            'filter', 'directive', 'value', 'constant']);
 
         spyOn(angular, 'module').andReturn(mockModule);
     });
@@ -75,7 +69,7 @@ describe('module creation', function () {
             });
         });
 
-        describe('when arg is an Object', function (){
+        describe('when arg is an Object', function () {
             var arg;
 
             beforeEach(function () {
@@ -86,6 +80,66 @@ describe('module creation', function () {
             it('should call module.value("lowerCamelName", arg)', function () {
                 expect(mockModule.value).toHaveBeenCalledWith('lowerCamelName', arg);
             });
+        });
+    });
+
+    describe('ng("myApp", "UpperCamelNameCtrl", arg)', function () {
+        describe('when arg is a function', function () {
+            var arg;
+
+            beforeEach(function () {
+                arg = function () {
+                };
+                ng('myApp', 'UpperCamelNameCtrl', arg);
+            });
+
+            it('should call module.controller("UpperCamelNameCtrl", arg)', function () {
+                expect(mockModule.controller).toHaveBeenCalledWith('UpperCamelNameCtrl', arg);
+            });
+        });
+
+        describe('when arg is an Array', function () {
+            var arg;
+
+            beforeEach(function () {
+                arg = [];
+                ng('myApp', 'UpperCamelNameCtrl', arg);
+            });
+
+            it('should call module.controller("UpperCamelNameCtrl", arg)', function () {
+                expect(mockModule.controller).toHaveBeenCalledWith('UpperCamelNameCtrl', arg);
+            });
+        });
+    });
+
+    describe('ng("myApp", "UPPER_CASE", arg)', function () {
+        var arg;
+
+        beforeEach(function() {
+            arg = 'my super sweet constant';
+            ng('myApp', "UPPER_CASE", arg);
+        });
+
+        it('should call module.constant("UPPER_CASE", arg)', function () {
+            expect(mockModule.constant).toHaveBeenCalledWith('UPPER_CASE', arg);
+        });
+    });
+
+    describe('ng("myApp", "UpperCamel", arg) /* non-controller */', function () {
+        var arg;
+
+        beforeEach(function() {
+            arg = function(){};
+            ng('myApp', "UpperCamel", arg);
+        });
+
+        it('should call module.factory("UpperCamel", x), where `x` is a function that returns a ctor of the function' +
+            'in `arg`', function () {
+            expect(mockModule.factory).toHaveBeenCalled();
+            expect(mockModule.factory.mostRecentCall.args[0]).toBe('UpperCamel');
+            var secondArg = mockModule.factory.mostRecentCall.args[1];
+            expect(typeof secondArg).toBe('function');
+            expect(secondArg()).toBe(arg);
         });
     });
 });
