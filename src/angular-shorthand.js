@@ -9,6 +9,7 @@
       isObject = angular.isObject,
       forEach = angular.forEach,
       isString = angular.isString,
+      extend = angular.extend,
       isFunction = angular.isFunction;
   
   var declarationTypeMatchers = {
@@ -110,7 +111,9 @@
     var module = isArray(arg2) ? angular.module(moduleName, arg2) :
           angular.module(moduleName);
     var ng = createNg(module);
-    
+
+    extend(ng, module);
+
     if(isObject(arg2) && !isArray(arg2)) {
       ng(arg2);
     }

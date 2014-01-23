@@ -4,7 +4,7 @@ describe('module creation', function () {
 
     beforeEach(function () {
         mockModule = jasmine.createSpyObj('module', ['controller', 'service', 'factory', 'provider',
-            'filter', 'directive', 'value', 'constant']);
+            'filter', 'directive', 'value', 'constant', 'run', 'config']);
 
         spyOn(angular, 'module').andReturn(mockModule);
     });
@@ -140,6 +140,26 @@ describe('module creation', function () {
             var secondArg = mockModule.factory.mostRecentCall.args[1];
             expect(typeof secondArg).toBe('function');
             expect(secondArg()).toBe(arg);
+        });
+    });
+
+    describe('ng("myApp") return value', function () {
+        var shorthand;
+
+        beforeEach(function (){
+            shorthand = ng('myApp');
+        });
+
+        it('should be extended with the module\'s functions', function () {
+            expect(shorthand.controller).toBe(mockModule.controller);
+            expect(shorthand.service).toBe(mockModule.service);
+            expect(shorthand.filter).toBe(mockModule.filter);
+            expect(shorthand.provider).toBe(mockModule.provider);
+            expect(shorthand.constant).toBe(mockModule.constant);
+            expect(shorthand.value).toBe(mockModule.value);
+            expect(shorthand.directive).toBe(mockModule.directive);
+            expect(shorthand.run).toBe(mockModule.run);
+            expect(shorthand.config).toBe(mockModule.config);
         });
     });
 });
