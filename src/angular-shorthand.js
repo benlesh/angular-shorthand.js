@@ -96,11 +96,11 @@
   }
   
   window.ng = function(moduleName, arg2) {
-    var module = isArray(arg2) ? angular.module(moduleName, arg2) : 
+    var module = isArray(arg2) ? angular.module(moduleName, arg2) :
           angular.module(moduleName);
     var ng = createNg(module);
     
-    if(isObject(arg2)) {
+    if(isObject(arg2) && !isArray(arg2)) {
       ng(arg2);
     }
     
