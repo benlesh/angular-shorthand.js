@@ -7,9 +7,9 @@ module.exports = function(grunt) {
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
                     '  (c) 2014 Ben Lesh - http://www.benlesh.com - MIT license */'
             },
-            my_target: {
+            main: {
                 files: {
-                    'dest/angular-shorthand.min.js': ['src/angular-shorthand.js']
+                    'dist/angular-shorthand.min.js': ['src/angular-shorthand.js']
                 }
             }
         }
