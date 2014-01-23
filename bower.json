@@ -1,0 +1,26 @@
+{
+  "name": "angular-shorthand.js",
+  "main": "angular-shorthand.js",
+  "version": "0.0.1",
+  "authors": [
+    "Ben Lesh <ben@benlesh.com>"
+  ],
+  "description": "Shorthand wrapper for terse AngularJS development\"",
+  "keywords": [
+    "angular.js",
+    "productivity"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/blesh/angular-shorthand.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.9",
+    "angular-mocks": "~1.2.9"
+  }
+}
