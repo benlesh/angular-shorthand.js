@@ -1,5 +1,5 @@
 /*
- angular-shorthand.js 0.3.3
+ angular-shorthand.js 0.3.4
  (c) 2014 Ben Lesh - http://www.benlesh.com
  MIT License
  */
