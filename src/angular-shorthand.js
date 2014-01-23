@@ -130,7 +130,17 @@
             angular.module(moduleName);
         var ng = createNg(module);
 
-        extend(ng, module);
+        extend(ng, {
+            run: module.run,
+            config: module.config,
+            controller: module.controller,
+            factory: module.factory,
+            service: module.service,
+            provider: module.provider,
+            value: module.value,
+            constant: module.constant,
+            filter: module.filter
+        });
 
         if (isObject(arg2) && !isArray(arg2)) {
             ng(arg2);
