@@ -250,7 +250,6 @@ angular.module('myApp').run(function () {
 
 # More to come
 
-- Filters.
 - Non-standard directives.
 - Multiple restriction directives.
 - Transcluded directive shorthand for element types ?
