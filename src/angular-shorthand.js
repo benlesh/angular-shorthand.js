@@ -51,7 +51,8 @@
                return args;
             });
         } else {
-            throw new Error('invalid class declaration "' + name +'", expects class constructor function');
+            throw new Error('invalid simple class "' + name +'", if your class requires DI, use the factory method' +
+                'directly');
         }
     }
   };
