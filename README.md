@@ -109,6 +109,44 @@ ng('myApp', 'somethingProvider', function () {
 });
 ```   
 
+### Filters
+
+Filters are declared with a name prefixed with a bar (`|`), such as `"| filterName"`, the filter shorthand also accepts
+two argument types, a Function or an Array.
+
+#### Simple Filters
+
+A simple filter is a filter that requires no DI, and just does a simple transformation. When a function is passed to the
+filter shorthand, it will treat that function as the filter itself:
+
+```javascript
+ng('myApp', '| addOne', function(val) {
+    return val + 1;
+});
+
+\\ SAME AS
+
+angular.module('myApp').filter('addOne', function () {
+    return function(val) {
+        return val + 1;
+    };
+});
+```
+
+#### Filters With Injection
+
+If you pass an array to the shorthand, it will just shorten the syntax for a standard filter declaration:
+
+```javascript
+ng('myApp', '| fancyDate', ['$filter', function($filter) {
+    var dateFilter = $filter('date');
+
+    return function(val) {
+        return 'Fancy! ' + dateFilter(val);
+    };
+}]);
+```
+
 ### Simple Classes
 
 Sometime we need to inject a simple class type. Something we can "new-up" in other portions of our code. In other words,
