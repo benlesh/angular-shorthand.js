@@ -194,12 +194,25 @@ ng('myApp', {
     }
 });
 ```
-        
+
+## Module extensions
+
+The returned shorthand object is extended with the properties of it's inner module. So the following lines are
+equivalent:
+
+```javascript
+ng('myApp').run(function (){
+    console.log('test');
+});
+
+angular.module('myApp').run(function () {
+    console.log('test');
+});
+```
 
 
 # More to come
 
-- **UNIT TESTS!!!** (bad developer! bad! bad!)
 - Filters.
 - Non-standard directives.
 - Multiple restriction directives.
