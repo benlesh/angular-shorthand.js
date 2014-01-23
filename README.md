@@ -142,7 +142,7 @@ ng('myApp', '| addOne', function(val) {
     return val + 1;
 });
 
-\\ SAME AS
+// SAME AS
 
 angular.module('myApp').filter('addOne', function () {
     return function(val) {
