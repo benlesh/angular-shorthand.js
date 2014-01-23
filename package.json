@@ -1,6 +1,6 @@
 {
   "name": "angular-shorthand.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shorthand wrapper for terse AngularJS development",
   "main": "angular-shorthand.js",
   "scripts": {
