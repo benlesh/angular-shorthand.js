@@ -5,6 +5,12 @@ Shorthand wrapper for AngularJS
 
 [Example on Plunker](http://plnkr.co/edit/7hQ2pcOm7j7E4GngkGfK?p=preview)
 
+### Install with Bower
+
+```sh
+$ bower install angular-shorthand
+```
+
 This library is a "plugin" of sorts for Angular that allows for more fluid declaration of angular components such as modules, services, directives, providers, controllers, etc.
 
 The goal of this library is to help developers:
