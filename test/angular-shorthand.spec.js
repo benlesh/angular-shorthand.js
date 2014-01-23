@@ -115,7 +115,7 @@ describe('module creation', function () {
     describe('ng("myApp", "UPPER_CASE", arg)', function () {
         var arg;
 
-        beforeEach(function() {
+        beforeEach(function () {
             arg = 'my super sweet constant';
             ng('myApp', "UPPER_CASE", arg);
         });
@@ -128,8 +128,9 @@ describe('module creation', function () {
     describe('ng("myApp", "UpperCamel", arg) /* non-controller */', function () {
         var arg;
 
-        beforeEach(function() {
-            arg = function(){};
+        beforeEach(function () {
+            arg = function () {
+            };
             ng('myApp', "UpperCamel", arg);
         });
 
@@ -143,10 +144,44 @@ describe('module creation', function () {
         });
     });
 
+    describe('ng("myApp", "| filterName", arg)', function () {
+        describe('when arg is a Function', function () {
+            var arg;
+
+            beforeEach(function () {
+                arg = function () {
+                };
+                ng('myApp', '| filterName', arg);
+            });
+
+            it('should call module.filter("filterName", x) where `x` is a function wrapping `arg` into a simple' +
+                'filter', function () {
+                expect(mockModule.filter).toHaveBeenCalled();
+                expect(mockModule.filter.mostRecentCall.args[0]).toBe('filterName');
+                var secondArg = mockModule.filter.mostRecentCall.args[1];
+                expect(typeof secondArg).toBe('function');
+                expect(secondArg()).toBe(arg);
+            });
+        });
+
+        describe('when arg is an Array', function () {
+            var arg;
+
+            beforeEach(function () {
+                arg = [];
+                ng('myApp', '| filterName', arg);
+            });
+
+            it('should call module.filter("filterName", arg)', function () {
+                expect(mockModule.filter).toHaveBeenCalledWith('filterName', arg);
+            });
+        });
+    });
+
     describe('ng("myApp") return value', function () {
         var shorthand;
 
-        beforeEach(function (){
+        beforeEach(function () {
             shorthand = ng('myApp');
         });
 
