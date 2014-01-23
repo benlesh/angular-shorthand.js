@@ -70,11 +70,17 @@
         }
     };
 
+    function rewriteDirectiveName(input) {
+        return input.replace(/-([a-z])/g, function(match, $1) {
+            return $1.toUpperCase();
+        });
+    }
+
     function directiveType(restriction, regex) {
         return function (module, name, args) {
-            regex.lastIndex = 0
+            regex.lastIndex = 0;
             console.log(name);
-            var dirName = regex.exec(name)[1];
+            var dirName = rewriteDirectiveName(regex.exec(name)[1]);
 
             if (isArray(args)) {
                 module.directive(dirName, args);
