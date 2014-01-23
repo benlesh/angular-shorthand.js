@@ -109,6 +109,37 @@ ng('myApp', 'somethingProvider', function () {
 });
 ```   
 
+### Simple Classes
+
+Sometime we need to inject a simple class type. Something we can "new-up" in other portions of our code. In other words,
+a "non-singleton" Angular service.
+
+This is usually done by returning a constructor function from an Angular service, The shorthand for this is to use a
+name that is `UpperCamelCase` but does *not* end in "Ctrl".
+
+```javascript
+ng('myApp', 'Frob', function () {
+    var self = this;
+    self.count = 0;
+    self.frobinate = function() {
+        self.count++;
+    }
+});
+
+\\ OR
+
+function Frob() {
+   this.count = 0;
+}
+
+Frob.prototype.frobinate = function (){
+    this.count++;
+}
+
+ng('myApp', 'Frob', Frob);
+
+```
+
 ## Directives
 
 
