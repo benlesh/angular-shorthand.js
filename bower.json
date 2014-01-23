@@ -5,7 +5,7 @@
   "authors": [
     "Ben Lesh <ben@benlesh.com>"
   ],
-  "description": "Shorthand wrapper for terse AngularJS development\"",
+  "description": "Shorthand wrapper for terse AngularJS development",
   "keywords": [
     "angular.js",
     "productivity"
