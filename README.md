@@ -182,7 +182,7 @@ ng('myApp', 'Frob', function () {
     }
 });
 
-\\ OR
+// OR
 
 function Frob() {
    this.count = 0;
