@@ -139,6 +139,7 @@
             provider: module.provider,
             value: module.value,
             constant: module.constant,
+            directive: module.directive,
             filter: module.filter
         });
 
