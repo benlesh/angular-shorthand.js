@@ -15,7 +15,7 @@ This library is a "plugin" of sorts for Angular that allows for more fluid decla
 
 The goal of this library is to help developers:
 
-1. Keep uniform naming conventions for their Angular components.
+1. Keep uniform naming conventions for components.
 2. Create a more terse, more readable api for Angular.
 3. Make directive declarations more self explanatory.
 4. Type a **lot** less.
@@ -47,6 +47,18 @@ In the statement `ng('moduleName', componentName, args)` does the following:
 1. Gets the module named `'moduleName'`.
 2. Examines `componentName` to see if it's a directive, service, constant, value, provider, etc.
 3. Examines the `args` passed to help shorten the declarations that need to be made.
+
+
+### Quick Reference for Component Name types
+
+- `'lowerCamelCase'` : service (if function or array passed next) or value if anything else
+- `'SomeNameCtrl'` : controller ("Ctrl" suffix required)
+- `'<tag-name>'` : element directive named `'tagName'`
+- `'[attr-name]'` : attribute directive named `'attrName'`
+- `<!-- commentDir -->` : comment directive named `'commentDir'`
+- `'| myFilter'` : filter named `'myFilter'`
+- `'CONST_VAL'` : a constant named `'CONST_VAL'`
+- `'FooBar'` : a simple "newable" class named `'FooBar'`.
 
 
 # Usage
