@@ -175,7 +175,6 @@ Frob.prototype.frobinate = function (){
 }
 
 ng('myApp', 'Frob', Frob);
-
 ```
 
 ## Directives
