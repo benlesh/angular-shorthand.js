@@ -198,6 +198,33 @@ describe('module creation', function () {
         });
     });
 
+    describe('ng("myApp", "someProvider", arg)', function () {
+        var arg;
+
+        describe('when arg is an Array', function () {
+            beforeEach(function () {
+                arg = [];
+                ng('myApp', 'someProvider', arg);
+            });
+
+            it('should call module.provider("some", arg)', function () {
+                expect(mockModule.provider).toHaveBeenCalledWith('some', arg);
+            });
+        });
+
+        describe('when arg is a Function', function () {
+            beforeEach(function () {
+                arg = function () {
+                };
+                ng('myApp', 'someProvider', arg);
+            });
+
+            it('should call module.provider("some", arg)', function () {
+                expect(mockModule.provider).toHaveBeenCalledWith('some', arg);
+            });
+        });
+    });
+
     describe('ng("myApp", "<!-- directiveName -->", arg)', function () {
         var arg;
 
@@ -234,7 +261,7 @@ describe('module creation', function () {
             });
         });
     });
-    
+
     describe('ng("myApp", "[directive-name]", arg)', function () {
         var arg;
 
