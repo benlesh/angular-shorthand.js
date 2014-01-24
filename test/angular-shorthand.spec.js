@@ -112,6 +112,27 @@ describe('module creation', function () {
         });
     });
 
+    describe('ng("myApp", "UpperCamelName", arg)', function () {
+        describe('when arg is a function', function () {
+            var arg;
+
+            beforeEach(function () {
+                arg = function () {
+                };
+                ng('myApp', 'UpperCamelName', arg);
+            });
+
+            it('should call module.factory("UpperCamelName", x) where `x` is a function that returns `arg`',
+                function () {
+                    expect(mockModule.factory).toHaveBeenCalled();
+                    expect(mockModule.factory.mostRecentCall.args[0]).toBe('UpperCamelName');
+                    var secondArg = mockModule.factory.mostRecentCall.args[1];
+                    expect(typeof secondArg).toBe('function');
+                    expect(secondArg()).toBe(arg);
+                });
+        })
+    });
+
     describe('ng("myApp", "UPPER_CASE", arg)', function () {
         var arg;
 
