@@ -198,6 +198,80 @@ describe('module creation', function () {
         });
     });
 
+    describe('ng("myApp", "<!-- directiveName -->", arg)', function () {
+        var arg;
+
+        describe('when arg is a function', function () {
+            beforeEach(function () {
+                arg = function () {
+                };
+                ng("myApp", "<!-- directiveName -->", arg);
+            });
+
+            it('should call module.directive("directiveName", x) where `x` is a function that returns a directive ' +
+                'configuration object with `arg` as the link function, an "A" as a restriction', function () {
+                expect(mockModule.directive).toHaveBeenCalled();
+                expect(mockModule.directive.mostRecentCall.args[0]).toBe('directiveName');
+                var secondArg = mockModule.directive.mostRecentCall.args[1];
+                expect(typeof secondArg).toBe('function');
+                var config = secondArg();
+                expect(config.restrict).toBe("M");
+                expect(config.link).toBe(arg);
+            });
+        });
+
+        describe('when arg is an Array', function () {
+            beforeEach(function () {
+                arg = [];
+                ng("myApp", "<!-- directiveName -->", arg);
+            });
+        });
+
+        describe('when arg is an Object', function () {
+            beforeEach(function () {
+                arg = {};
+                ng("myApp", "<!-- directiveName -->", arg);
+            });
+        });
+    });
+    
+    describe('ng("myApp", "[directive-name]", arg)', function () {
+        var arg;
+
+        describe('when arg is a function', function () {
+            beforeEach(function () {
+                arg = function () {
+                };
+                ng("myApp", "[directive-name]", arg);
+            });
+
+            it('should call module.directive("directiveName", x) where `x` is a function that returns a directive ' +
+                'configuration object with `arg` as the link function, an "A" as a restriction', function () {
+                expect(mockModule.directive).toHaveBeenCalled();
+                expect(mockModule.directive.mostRecentCall.args[0]).toBe('directiveName');
+                var secondArg = mockModule.directive.mostRecentCall.args[1];
+                expect(typeof secondArg).toBe('function');
+                var config = secondArg();
+                expect(config.restrict).toBe("A");
+                expect(config.link).toBe(arg);
+            });
+        });
+
+        describe('when arg is an Array', function () {
+            beforeEach(function () {
+                arg = [];
+                ng("myApp", "[directive-name]", arg);
+            });
+        });
+
+        describe('when arg is an Object', function () {
+            beforeEach(function () {
+                arg = {};
+                ng("myApp", "[directive-name]", arg);
+            });
+        });
+    });
+
     describe('ng("myApp", "<directive-name>", arg)', function () {
         var arg;
 
