@@ -1,6 +1,6 @@
 {
     "name": "angular-shorthand.js",
-    "main": ["dist/angular-shorthand.min.js", "dist/angular-shorthand.js"],
+    "main": ["dist/angular-shorthand.min.js", "angular-shorthand.js"],
     "version": "0.3.6",
     "authors": [
         "Ben Lesh <ben@benlesh.com>"
