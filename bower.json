@@ -1,6 +1,6 @@
 {
     "name": "angular-shorthand.js",
-    "main": ["dist/angular-shorthand.min.js", "angular-shorthand.js"],
+    "main": ["angular-shorthand.min.js", "angular-shorthand.js"],
     "version": "0.3.6",
     "authors": [
         "Ben Lesh <ben@benlesh.com>"
@@ -15,8 +15,6 @@
     "ignore": [
         "node_modules",
         "bower_components",
-        "test",
-        "src",
         "banner.js",
         "Gruntfile.js",
         "karma.conf.js",
