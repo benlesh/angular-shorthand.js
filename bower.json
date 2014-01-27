@@ -1,25 +1,29 @@
 {
-  "name": "angular-shorthand.js",
-  "main": "angular-shorthand.js",
-  "version": "0.3.6",
-  "authors": [
-    "Ben Lesh <ben@benlesh.com>"
-  ],
-  "description": "Shorthand wrapper for terse AngularJS development",
-  "keywords": [
-    "angular.js",
-    "productivity"
-  ],
-  "license": "MIT",
-  "homepage": "http://github.com/blesh/angular-shorthand.js",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angular": "~1.2.9"
-  }
+    "name": "angular-shorthand.js",
+    "main": ["dist/angular-shorthand.min.js", "dist/angular-shorthand.js"],
+    "version": "0.3.6",
+    "authors": [
+        "Ben Lesh <ben@benlesh.com>"
+    ],
+    "description": "Shorthand wrapper for terse AngularJS development",
+    "keywords": [
+        "angular.js",
+        "productivity"
+    ],
+    "license": "MIT",
+    "homepage": "http://github.com/blesh/angular-shorthand.js",
+    "ignore": [
+        "node_modules",
+        "bower_components",
+        "test",
+        "src",
+        "banner.js",
+        "Gruntfile.js",
+        "karma.conf.js",
+        "package.json",
+        ".gitignore"
+    ],
+    "dependencies": {
+        "angular": "~1.2.9"
+    }
 }
